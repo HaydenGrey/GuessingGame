@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Guessing Game</title>
+  <style>
+    /* Add some styling to the page */
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #guess-form {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #guess-form input[type="text"] {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #guess-form input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #guess-form input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    #result {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Number Guessing Game</h1>
+  <form id="guess-form">
+    <label for="guess">Enter your guess:</label>
+    <input type="text" id="guess" name="guess">
+    <input type="submit" value="Guess">
+  </form>
+  <div id="result"></div>
+  <script>
+    // Generate a random number between 1 and 100
+    var targetNumber = Math.floor(Math.random() * 100) + 1;
+
+    // Keep track of the number of guesses
+    var numGuesses = 0;
+
+    // Get a reference to the form and input elements
+    var form = document.getElementById("guess-form");
+    var input = document.getElementById("guess");
+    var result = document.getElementById("result");
+
+    // Handle form submission
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Get the player's guess
+      var guess = Number(input.value);
+
+      // Check if the guess is valid
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        result.textContent = "Please enter a valid number between 1 and 100.";
+        return;
+      }
+
+      // Increment the number of guesses
+      numGuesses++;
+
+      // Check if the player has guessed the correct number
+      if (guess === targetNumber) {
+        result.textContent = "Congratulations! You guessed the number in " + numGuesses + " tries.";
+      } else if (guess < targetNumber) {
+        result.textContent = "Too low! Try again.";
+      } else {
+        result.textContent = "Too High, Try Again"
+    }
+});
+</script>
+
+</body>
+</html>
